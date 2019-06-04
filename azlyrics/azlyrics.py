@@ -2,6 +2,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+AZ_LYRICS = "https://www.azlyrics.com/lyrics/{}/{}.html"
+
 # Remove newline and line feed characters from the lyrics
 def clean_lyrics(lyrics):
     lyric_list = list(filter(lambda x: x != "\n", lyrics))
@@ -29,7 +31,7 @@ def clean_names(artist_name, song_name):
 
 
 def create_url(artist_name, song_name):
-    return "https://www.azlyrics.com/lyrics/{}/{}.html".format(artist_name, song_name)
+    return AZ_LYRICS.format(artist_name, song_name)
 
 
 def get_page(url):
