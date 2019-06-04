@@ -20,7 +20,7 @@ class TestClass(object):
         ],
     )
     def test_clean_names(self, inp, exp):
-        assert api.clean_names(inp[0], inp[1]) == exp
+        assert api._clean_names(inp[0], inp[1]) == exp
 
     @pytest.mark.parametrize(
         ("inp", "exp"),
@@ -56,7 +56,7 @@ class TestClass(object):
         ],
     )
     def test_create_url(self, inp, exp):
-        assert api.create_url(inp[0], inp[1]) == exp
+        assert api._create_url(inp[0], inp[1]) == exp
 
     @pytest.mark.parametrize(
         ("inp", "exp"),
@@ -92,4 +92,4 @@ class TestClass(object):
         ],
     )
     def test_create_url_uncleaned(self, inp, exp):
-        assert api.create_url(inp[0], inp[1]) == exp
+        assert api._create_url(inp[0], inp[1]) == exp
