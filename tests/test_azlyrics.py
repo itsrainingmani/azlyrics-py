@@ -130,13 +130,17 @@ class TestClass(object):
     def test_create_url_uncleaned(self, inp, exp):
         assert api._create_url(inp[0], inp[1]) == exp
 
-    def test_artist_wrong_type(self):
+    @pytest.mark.parametrize(
+        ("inp"),
+        [
+            (("hello kitty", 0)),
+            ((0, "hello kitty")),
+            ((0, 0))
+        ],
+    )
+    def test_artist_wrong_type(self, inp):
         with pytest.raises(TypeError):
-            api.get_lyrics(0, "hello kitty")
-
-    def test_song_wrong_type(self):
-        with pytest.raises(TypeError):
-            api.get_lyrics("hello kitty", 12)
+            api.get_lyrics(inp[0], inp[1])
 
     def test_get_page(self):
         test_url = api.AZ_LYRICS.format("bluj", "b;ak")
@@ -166,3 +170,15 @@ class TestClass(object):
     def test_get_lyrics(self, inp):
         lyr = api.get_lyrics(inp[0], inp[1])
         assert len(lyr) > 1
+
+    @pytest.mark.parametrize(
+        ("inp"),
+        [
+            (0),
+            ("you take my breath aaway"),
+            (tuple([0,1,2,3])),
+        ],
+    )
+    def test_pretty_print_incorrect_type(self, inp):
+        with pytest.raises(TypeError):
+            api.pretty_print_lyrics(inp)
