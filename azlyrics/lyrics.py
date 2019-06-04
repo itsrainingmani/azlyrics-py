@@ -39,24 +39,25 @@ def _get_page(url):
 
 
 def get_lyrics(artist, song):
+
+    if not isinstance(artist, str):
+        raise TypeError("The artist name should be a string")
+    if not isinstance(song, str):
+        raise TypeError("The song name should be a string")
+
     artist_name, song_name = _clean_names(artist, song)
     # print(artist_name, song_name)
     url = _create_url(artist_name, song_name)
     page = _get_page(url)
     if page == "Lyrics not found":
-        return [page]
+        return []
     soup = BeautifulSoup(page, "html.parser")
     mydivs = soup.find("div", {"class": "ringtone"})
     lyrics = mydivs.find_next_sibling("div")
-    lyric_list = []
-    for line in lyrics:
-        try:
-            if "<br/>" not in line.string:
-                lyric_list.append(line.string)
-        except TypeError:
-            pass
 
-    lyric_list = _clean_lyrics(lyric_list)
+    # Use the .stripped_strings generator to remove all extra whitespace
+    # and strings consisting only of whitespace
+    lyric_list = [text for text in lyrics.stripped_strings]
     return lyric_list
 
 # Print out the lyrics in blocks of 4 lines
