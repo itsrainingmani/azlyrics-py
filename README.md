@@ -81,7 +81,6 @@ I won't escape the rip
 
 ## TO-DO
 
-- Add function to save lyrics to a text file
 - Get all albums/songs by an artist
 - Allow for artist name and song to be lightly misspelled
 - Check for closest artist name and song name

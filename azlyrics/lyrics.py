@@ -74,6 +74,3 @@ def pretty_print_lyrics(lyric_list):
             # pass
     print("\n")
 
-# Save the lyrics for a song into a text file
-def save_song_lyrics(download_dir=None):
-    pass
