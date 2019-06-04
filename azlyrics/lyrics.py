@@ -6,7 +6,11 @@ AZ_LYRICS = "https://www.azlyrics.com/lyrics/{}/{}.html"
 
 # Remove newline and line feed characters from the lyrics
 def clean_lyrics(lyrics):
+
+    # Filter out lines that are just the newline
     lyric_list = list(filter(lambda x: x != "\n", lyrics))
+
+    # Strip both newline and carriage return chars from a lyric line
     lyric_list = list(map(lambda x: x.strip("\r").strip("\n"), lyric_list))[1:]
 
     return lyric_list
@@ -31,6 +35,7 @@ def clean_names(artist_name, song_name):
 
 
 def create_url(artist_name, song_name):
+    artist_name, song_name = clean_names(artist_name, song_name)
     return AZ_LYRICS.format(artist_name, song_name)
 
 
