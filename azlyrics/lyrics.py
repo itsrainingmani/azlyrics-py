@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 AZ_LYRICS = "https://www.azlyrics.com/lyrics/{}/{}.html"
 
+
 # Remove newline and line feed characters from the lyrics
 def _clean_lyrics(lyrics):
 
@@ -14,6 +15,7 @@ def _clean_lyrics(lyrics):
     lyric_list = list(map(lambda x: x.strip("\r").strip("\n"), lyric_list))[1:]
 
     return lyric_list
+
 
 # Remove leading The from the artist name
 # Remove all non alphanumeric characters from artist, song names
@@ -59,6 +61,7 @@ def get_lyrics(artist, song):
     # and strings consisting only of whitespace
     lyric_list = [text for text in lyrics.stripped_strings]
     return lyric_list
+
 
 # Print out the lyrics in blocks of 4 lines
 def pretty_print_lyrics(lyric_list):
