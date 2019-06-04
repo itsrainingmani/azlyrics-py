@@ -12,6 +12,7 @@ class TestClass(object):
         [
             (("Metallica", "One"), ("metallica", "one")),
             (("The Killers", "The Man"), ("killers", "theman")),
+            (("King Gizzard & the LizArd wizArd", "woRk-This-Time"), ("kinggizzardthelizardwizard", "workthistime"))
         ],
     )
     def test_clean_names(self, inp, exp):
