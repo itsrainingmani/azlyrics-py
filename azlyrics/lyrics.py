@@ -65,6 +65,8 @@ def get_lyrics(artist, song):
 
 # Print out the lyrics in blocks of 4 lines
 def pretty_print_lyrics(lyric_list):
+    if not isinstance(lyric_list, list):
+        raise TypeError("The lyrics should be a list")
     for i in range(0, len(lyric_list)):
         print(lyric_list[i])
         if (i + 1) % 4 == 0 and i > 0:
