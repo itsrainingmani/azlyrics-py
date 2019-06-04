@@ -15,6 +15,7 @@ def clean_lyrics(lyrics):
 
     return lyric_list
 
+
 # Print out the lyrics in blocks of 4 lines
 def pretty_print_lyrics(lyric_list):
     for i in range(0, len(lyric_list)):
@@ -23,6 +24,7 @@ def pretty_print_lyrics(lyric_list):
             print("\n")
             # pass
     print("\n")
+
 
 # Remove leading The from the artist name
 # Remove all non alphanumeric characters from artist, song names
