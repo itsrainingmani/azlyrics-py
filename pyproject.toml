@@ -6,6 +6,8 @@ authors = ["Manikandan Sundararajan <tsmanikandan@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+requests = "^2.22"
+beautifulsoup4 = "^4.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
