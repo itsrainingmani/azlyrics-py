@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 AZ_LYRICS = "https://www.azlyrics.com/lyrics/{}/{}.html"
+AZ_LYRICS_ALL_ARTISTS = "https://www.azlyrics.com/{}.html"
 
 
 # Remove newline and line feed characters from the lyrics
@@ -37,7 +38,7 @@ def _get_page(url):
     if r.status_code == 200:
         return r.text
     elif r.status_code == 404:
-        return "Lyrics not found"
+        return "Not found"
 
 
 def get_lyrics(artist, song):
@@ -51,7 +52,7 @@ def get_lyrics(artist, song):
     # print(artist_name, song_name)
     url = _create_url(artist_name, song_name)
     page = _get_page(url)
-    if page == "Lyrics not found":
+    if page == "Not found":
         return []
     soup = BeautifulSoup(page, "html.parser")
     mydivs = soup.find("div", {"class": "ringtone"})
@@ -73,4 +74,3 @@ def pretty_print_lyrics(lyric_list):
             print("\n")
             # pass
     print("\n")
-
