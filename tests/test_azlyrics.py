@@ -33,23 +33,63 @@ class TestClass(object):
                 ("killers", "theman"),
                 ("https://www.azlyrics.com/lyrics/killers/theman.html")
             ),
+            (
+                ("kinggizzardthelizardwizard", "workthistime"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/workthistime.html")
+            ),
+            (
+                ("kinggizzardthelizardwizard", "headonpill"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/headonpill.html")
+            ),
+            (
+                ("kinggizzardthelizardwizard", "danger"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/danger.html")
+            ),
+            (
+                ("kinggizzardthelizardwizard", "herandislowjam2"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/herandislowjam2.html")
+            ),
+            (
+                ("kinggizzardthelizardwizard", "timefate"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/timefate.html")
+            ),
         ],
     )
     def test_create_url(self, inp, exp):
         assert api.create_url(inp[0], inp[1]) == exp
 
-    # @pytest.mark.parametrize(
-    #     ("inp", "exp"),
-    #     [
-    #         (
-    #             ("metallica", "one"),
-    #             ("https://www.azlyrics.com/lyrics/metallica/one.html")
-    #         ),
-    #         (
-    #             ("killers", "theman"),
-    #             ("https://www.azlyrics.com/lyrics/killers/theman.html")
-    #         ),
-    #     ],
-    # )
-    # def test_create_url_uncleaned(self, inp, exp):
-    #     assert api.create_url(inp[0], inp[1]) == exp
+    @pytest.mark.parametrize(
+        ("inp", "exp"),
+        [
+            (
+                ("Metallica", "One"),
+                ("https://www.azlyrics.com/lyrics/metallica/one.html")
+            ),
+            (
+                ("The Killers", "The Man"),
+                ("https://www.azlyrics.com/lyrics/killers/theman.html")
+            ),
+            (
+                ("King Gizzard & the LizArd wizArd", "woRk-This-Time"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/workthistime.html")
+            ),
+            (
+                ("King Gizzard &the LizArd wizArd", "Head on / Pill"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/headonpill.html")
+            ),
+            (
+                ("King Gizzard & the LizArd wizArd", "Danger $$$"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/danger.html")
+            ),
+            (
+                ("King Gizzard & the LizArd wizArd", "Her And I (Slow Jam 2)"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/herandislowjam2.html")
+            ),
+            (
+                ("King Gizzard & The Lizard Wizard", "TIme = Fate"),
+                ("https://www.azlyrics.com/lyrics/kinggizzardthelizardwizard/timefate.html")
+            ),
+        ],
+    )
+    def test_create_url_uncleaned(self, inp, exp):
+        assert api.create_url(inp[0], inp[1]) == exp
