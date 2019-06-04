@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "azlyrics"
 version = "0.1.0"
-description = ""
+description = "Python package to download lyrics from azlyrics.com"
 authors = ["Manikandan Sundararajan <tsmanikandan@protonmail.com>"]
 
 [tool.poetry.dependencies]
