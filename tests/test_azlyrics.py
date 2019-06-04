@@ -1,6 +1,6 @@
-from az import __version__
+from azlyrics import __version__
 import pytest
-import az.lyrics as api
+import azlyrics.lyrics as api
 
 
 def test_version():
