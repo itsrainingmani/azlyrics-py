@@ -11,7 +11,7 @@
                     |___/                              |_|      |___/
 ```
 
-Azlyrics-py is a *minimal* library for extracting the lyrics for a given artist and song from [AZLyrics](https://www.azlyrics.com")
+Azlyrics-py is a *minimal* library for extracting the lyrics for a given artist and song from [AZLyrics](https://www.azlyrics.com/)
 
 ## Usage
 
