@@ -93,3 +93,40 @@ class TestClass(object):
     )
     def test_create_url_uncleaned(self, inp, exp):
         assert api._create_url(inp[0], inp[1]) == exp
+
+    def test_artist_wrong_type(self):
+        with pytest.raises(TypeError):
+            api.get_lyrics(0, "hello kitty")
+
+    def test_song_wrong_type(self):
+        with pytest.raises(TypeError):
+            api.get_lyrics("hello kitty", 12)
+
+    def test_get_page(self):
+        test_url = api.AZ_LYRICS.format("bluj", "b;ak")
+        r = api._get_page(test_url)
+        assert r == "Lyrics not found"
+
+    def test_get_lyrics_incorrect_song(self):
+        lyr = api.get_lyrics("King Gizzard & The lizard wizard", "Enter sandman")
+        assert len(lyr) == 0
+
+    def test_get_lyrics_incorrect_artist(self):
+        lyr = api.get_lyrics("King Gizzard & lizard wizard", "Danger $$$")
+        assert len(lyr) == 0
+
+    @pytest.mark.parametrize(
+        ("inp"),
+        [
+            (("Metallica", "One")),
+            (("The Killers", "The Man")),
+            (("King Gizzard & the LizArd wizArd", "woRk-This-Time")),
+            (("King Gizzard &the LizArd wizArd", "Head on / Pill")),
+            (("King Gizzard & the LizArd wizArd", "Danger $$$")),
+            (("King Gizzard & the LizArd wizArd", "Her And I (Slow Jam 2)")),
+            (("King Gizzard & The Lizard Wizard", "TIme = Fate")),
+        ],
+    )
+    def test_get_lyrics(self, inp):
+        lyr = api.get_lyrics(inp[0], inp[1])
+        assert len(lyr) > 1
