@@ -131,12 +131,7 @@ class TestClass(object):
         assert api._create_url(inp[0], inp[1]) == exp
 
     @pytest.mark.parametrize(
-        ("inp"),
-        [
-            (("hello kitty", 0)),
-            ((0, "hello kitty")),
-            ((0, 0))
-        ],
+        ("inp"), [(("hello kitty", 0)), ((0, "hello kitty")), ((0, 0))]
     )
     def test_artist_wrong_type(self, inp):
         with pytest.raises(TypeError):
@@ -148,7 +143,8 @@ class TestClass(object):
         assert r == "Lyrics not found"
 
     def test_get_lyrics_incorrect_song(self):
-        lyr = api.get_lyrics("King Gizzard & The lizard wizard", "Enter sandman")
+        lyr = api.get_lyrics(
+            "King Gizzard & The lizard wizard", "Enter sandman")
         assert len(lyr) == 0
 
     def test_get_lyrics_incorrect_artist(self):
@@ -172,12 +168,7 @@ class TestClass(object):
         assert len(lyr) > 1
 
     @pytest.mark.parametrize(
-        ("inp"),
-        [
-            (0),
-            ("you take my breath aaway"),
-            (tuple([0,1,2,3])),
-        ],
+        ("inp"), [(0), ("you take my breath aaway"), (tuple([0, 1, 2, 3]))]
     )
     def test_pretty_print_incorrect_type(self, inp):
         with pytest.raises(TypeError):
