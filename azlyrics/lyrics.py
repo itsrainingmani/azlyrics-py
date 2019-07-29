@@ -24,9 +24,9 @@ def _clean_lyrics(lyrics):
 def _clean_names(artist_name, song_name):
     artist_name = re.sub(r"^The", "", artist_name)
     artist_name = re.sub(r"[^a-zA-Z0-9_]", "",
-                         artist_name.lower().replace(" ", ""))
+                        artist_name.lower().replace(" ", ""))
     song_name = re.sub(r"[^a-zA-Z0-9_]", "",
-                       song_name.lower().replace(" ", ""))
+                        song_name.lower().replace(" ", ""))
 
     return artist_name, song_name
 
