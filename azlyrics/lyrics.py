@@ -76,5 +76,5 @@ def pretty_print_lyrics(lyric_list):
         print(el)
         if (i + 1) % 4 == 0 and i > 0:
             print("\n")
-            # pass
-    print("\n")
+    if len(lyric_list) % 4 != 0:
+        print("\n")
