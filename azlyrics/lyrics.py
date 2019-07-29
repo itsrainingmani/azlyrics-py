@@ -1,4 +1,5 @@
 import re
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -70,8 +71,8 @@ def get_lyrics(artist, song):
 def pretty_print_lyrics(lyric_list):
     if not isinstance(lyric_list, list):
         raise TypeError("The lyrics should be a list")
-    for i in range(0, len(lyric_list)):
-        print(lyric_list[i])
+    for i, el in enumerate(lyric_list):
+        print(el)
         if (i + 1) % 4 == 0 and i > 0:
             print("\n")
             # pass
