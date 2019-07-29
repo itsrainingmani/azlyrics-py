@@ -11,24 +11,22 @@ AZ_LYRICS_ALL_ARTISTS = "https://www.azlyrics.com/{}.html"
 def _clean_lyrics(lyrics):
 
     # Filter out lines that are just the newline
-    lyric_list = list(filter(lambda x: x != "\n", lyrics))
-
     # Strip both newline and carriage return chars from a lyric line
-    lyric_list = list(map(lambda x: x.strip("\r").strip("\n"), lyric_list))[1:]
-
+    lyric_list = [x.strip("\r\n") for x in lyrics if x != '\n']
+    # lyric_list = list(map(lambda x: x.strip("\r").strip("\n"), lyric_list))[1:]
     return lyric_list
 
 
 # Remove leading The from the artist name
 # Remove all non alphanumeric characters from artist, song names
 def _clean_names(artist_name, song_name):
-    artist_name = re.sub(r"^The", "", artist_name)
-    artist_name = re.sub(r"[^a-zA-Z0-9_]", "",
-                        artist_name.lower().replace(" ", ""))
-    song_name = re.sub(r"[^a-zA-Z0-9_]", "",
+    cleaned_artist_name = re.sub(r"^The", "", artist_name)
+    cleaned_artist_name = re.sub(r"[^a-zA-Z0-9_]", "",
+                        cleaned_artist_name.lower().replace(" ", ""))
+    cleaned_song_name = re.sub(r"[^a-zA-Z0-9_]", "",
                         song_name.lower().replace(" ", ""))
 
-    return artist_name, song_name
+    return cleaned_artist_name, cleaned_song_name
 
 
 def _create_url(artist_name, song_name):
@@ -40,8 +38,8 @@ def _get_page(url):
     r = requests.get(url)
     if r.status_code == 200:
         return r.text
-    elif r.status_code == 404:
-        return "Not found"
+    else:
+        raise ValueError("The lyrics were not found")
 
 
 def get_lyrics(artist, song):
@@ -54,9 +52,12 @@ def get_lyrics(artist, song):
     artist_name, song_name = _clean_names(artist, song)
     # print(artist_name, song_name)
     url = _create_url(artist_name, song_name)
-    page = _get_page(url)
-    if page == "Not found":
+
+    try:
+        page = _get_page(url)
+    except ValueError as err:
         return []
+
     soup = BeautifulSoup(page, "html.parser")
     mydivs = soup.find("div", {"class": "ringtone"})
     lyrics = mydivs.find_next_sibling("div")
