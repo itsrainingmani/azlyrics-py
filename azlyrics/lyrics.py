@@ -1,7 +1,7 @@
 import re
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as bs4
 
 AZ_LYRICS = "https://www.azlyrics.com/lyrics/{}/{}.html"
 AZ_LYRICS_ALL_ARTISTS = "https://www.azlyrics.com/{}.html"
@@ -55,10 +55,10 @@ def get_lyrics(artist, song):
 
     try:
         page = _get_page(url)
-    except ValueError as err:
+    except ValueError:
         return []
 
-    soup = BeautifulSoup(page, "html.parser")
+    soup = bs4(page, "html.parser")
     mydivs = soup.find("div", {"class": "ringtone"})
     lyrics = mydivs.find_next_sibling("div")
 
