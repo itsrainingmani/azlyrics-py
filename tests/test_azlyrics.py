@@ -140,8 +140,8 @@ class TestClass(object):
 
     def test_get_page(self):
         test_url = api.AZ_LYRICS.format("bluj", "b;ak")
-        r = api._get_page(test_url)
-        assert r == "Not found"
+        with pytest.raises(ValueError):
+            api._get_page(test_url)
 
     def test_get_lyrics_incorrect_song(self):
         lyr = api.get_lyrics(
